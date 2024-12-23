@@ -2,6 +2,8 @@
 
 //#include <uva/xml.hpp>
 
+#include <iostream>
+
 #include <uva/ui/app.hpp>
 
 #include <gtk/gtk.h>
@@ -13,6 +15,11 @@ struct window_data {
     GtkWidget* window;
 };
 
+void draw_callback(GtkWidget* widget, cairo_t* cr, gpointer data) {
+    uva::lang::ui::frame* frame = reinterpret_cast<uva::lang::ui::frame*>(data);
+    frame->draw();
+}
+
 uva::lang::ui::frame::frame(std::string_view __title)
 {
     GtkWidget* window = gtk_application_window_new (gtkapp);
@@ -22,16 +29,18 @@ uva::lang::ui::frame::frame(std::string_view __title)
 
     os_specific_data_as<window_data>()->window = window;
 
+    //g_signal_connect (window, "draw", G_CALLBACK (draw_callback), this);
+
     // Setup the drawing area
 
-    // GtkWidget* drawing_area = gtk_drawing_area_new();
+    GtkWidget* drawing_area = gtk_drawing_area_new();
 
-    // gtk_container_add(GTK_CONTAINER(window), drawing_area);
+    gtk_container_add(GTK_CONTAINER(window), drawing_area);
 
-    // g_signal_connect (drawing_area, "draw", G_CALLBACK (draw_callback), this);
-    // g_signal_connect (drawing_area, "motion_notify_event", G_CALLBACK (motion_notify_event), this);
+    g_signal_connect (drawing_area, "draw", G_CALLBACK (draw_callback), this);
+    //g_signal_connect (drawing_area, "motion_notify_event", G_CALLBACK (motion_notify_event), this);
 
-    // gtk_widget_add_events(drawing_area, GDK_POINTER_MOTION_MASK);
+    //gtk_widget_add_events(drawing_area, GDK_POINTER_MOTION_MASK);
 }
 
 uva::lang::ui::frame::~frame()
