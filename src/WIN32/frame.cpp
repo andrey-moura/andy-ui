@@ -1,8 +1,10 @@
 #include <windows.h>
 
-#include <frame.hpp>
+#include <stdexcept>
 
-#include <uva-ui/app.hpp>
+#include <uva/ui/frame.hpp>
+
+#include <uva/ui/app.hpp>
 
 extern uva::lang::ui::app* uvaapp;
 

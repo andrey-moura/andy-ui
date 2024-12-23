@@ -1,3 +1,5 @@
+#include <Windows.h>
+
 #define UVA_IMPLEMENT_APP(x)\
 extern HINSTANCE hInstance;\
 extern HINSTANCE hPrevInstance;\

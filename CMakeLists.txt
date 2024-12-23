@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 project(uva-ui)
 
-include_directories(${CMAKE_CURRENT_LIST_DIR})
+include_directories(${CMAKE_CURRENT_LIST_DIR}/include)
 
 set(UVA_UI_BACKEND "NONE")
 
@@ -27,6 +27,16 @@ else()
     message(FATAL_ERROR "Unsupported platform")
 endif()
 
+macro(os_specific_target_properties target)
+    if(WIN32)
+        set_target_properties(${target} PROPERTIES WIN32_EXECUTABLE true)
+    elseif(LINUX)
+        target_link_libraries(${target} ${GTK3_LIBRARIES})
+    else()
+        message(FATAL_ERROR "Unsupported platform")
+    endif()
+endmacro()
+
 if (NOT UVA_UI_BACKEND STREQUAL "NONE")
     # Add uvaui as shared library
 
@@ -37,13 +47,7 @@ if (NOT UVA_UI_BACKEND STREQUAL "NONE")
 
     include_directories(${CMAKE_CURRENT_LIST_DIR}/include)
 
-    if(WIN32)
-        set_target_properties(uvaui PROPERTIES WIN32_EXECUTABLE true)
-    elseif(LINUX)
-        target_link_libraries(uvaui ${GTK3_LIBRARIES})
-    else()
-        message(FATAL_ERROR "Unsupported platform")
-    endif()
+    os_specific_target_properties(uvaui)
 
     add_definitions(-D"__UVA_UI_BACKEND_${UVA_UI_BACKEND}__")
 endif()
@@ -59,4 +63,6 @@ foreach(EXAMPLE ${EXAMPLES})
     add_executable(${EXAMPLE_NAME} ${EXAMPLE})
 
     target_link_libraries(${EXAMPLE_NAME} uvaui)
+
+    os_specific_target_properties(${EXAMPLE_NAME})
 endforeach()
