@@ -4,7 +4,7 @@
 #include <string_view>
 #include <functional>
 
-#include <uva/ui/os_specific_data_member.hpp>
+#include <uva/os_specific_data_member.hpp>
 #include <uva/ui/implmement_app.hpp>
 
 namespace uva
@@ -13,7 +13,7 @@ namespace uva
     {
         namespace ui
         {
-            class app : public os_specific_data_member
+            class app : public os_specific_data_member<32>
             {
             public:
                 app(std::string_view __name, std::string_view vendor);

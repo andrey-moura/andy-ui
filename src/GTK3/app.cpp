@@ -17,6 +17,7 @@ void on_activate (GtkApplication* app, gpointer user_data) {
 uva::lang::ui::app::app(std::string_view __name, std::string_view vendor)
 {
     gtkapp = gtk_application_new ("org.gtk.example", G_APPLICATION_FLAGS_NONE);
+    g_set_application_name("My App");
     g_signal_connect (gtkapp, "activate", G_CALLBACK (on_activate), this);
 }
 
