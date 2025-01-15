@@ -16,14 +16,13 @@ namespace uva
 {
     namespace ui
     {
-
-        class frame : public toplevel
+        class dialog : public toplevel
         {
         public:
-            frame(std::string_view __title);
-            ~frame();
+            dialog(std::string_view __title);
+            ~dialog();
         public:
-            virtual void show(bool maximized = false) override;
+            void show(bool maximized = false) override;
         };
     };
 };

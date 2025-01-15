@@ -42,7 +42,9 @@ if (NOT UVA_UI_BACKEND STREQUAL "NONE")
 
     add_library(uvaui
         ${CMAKE_CURRENT_LIST_DIR}/src/${UVA_UI_BACKEND}/app.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/${UVA_UI_BACKEND}/dialog.cpp
         ${CMAKE_CURRENT_LIST_DIR}/src/${UVA_UI_BACKEND}/frame.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/${UVA_UI_BACKEND}/toplevel.cpp
     )
 
     include_directories(${CMAKE_CURRENT_LIST_DIR}/include)
