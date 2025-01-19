@@ -6,7 +6,7 @@
 
 #include <uva/ui/app.hpp>
 
-extern uva::lang::ui::app* uvaapp;
+extern uva::ui::app* uvaapp;
 
 extern HINSTANCE hInstance;
 
@@ -40,9 +40,9 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     return DefWindowProc(hwnd, uMsg, wParam, lParam);
 }
 
-uva::lang::ui::frame::frame(std::string_view __title)
+uva::ui::frame::frame(std::string_view __title)
 {
-    const TCHAR* class_name = TEXT("uva::lang::ui::frame");
+    const TCHAR* class_name = TEXT("uva::ui::frame");
 
     WNDCLASS wc = { 0 };
     wc.lpfnWndProc = WindowProc;
@@ -57,23 +57,18 @@ uva::lang::ui::frame::frame(std::string_view __title)
         throw std::runtime_error("Failed to create window");
     }
 
-    os_specific_data_as<window_data>()->hwnd = hwnd;
+    os_specific_data_as<window_data>().hwnd = hwnd;
 }
 
-uva::lang::ui::frame::~frame()
+uva::ui::frame::~frame()
 {
 
 }
 
-void uva::lang::ui::frame::show(bool maximized)
+void uva::ui::frame::show(bool maximized)
 {
-    HWND hwnd = os_specific_data_as<window_data>()->hwnd;
+    HWND hwnd = os_specific_data_as<window_data>().hwnd;
 
     ShowWindow(hwnd, maximized ? SW_MAXIMIZE : SW_SHOW);
     UpdateWindow(hwnd);
-}
-
-void uva::lang::ui::frame::hide()
-{
-
 }
