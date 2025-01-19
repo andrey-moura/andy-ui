@@ -2,6 +2,8 @@
 
 #include <Windows.h>
 
+#include <uva/drawing/win32.hpp>
+
 namespace uva
 {
     namespace ui
@@ -20,7 +22,12 @@ namespace uva
 
         uva::size toplevel::size() const
         {
-            return uva::size();
+            HWND hwnd = os_specific_data_as<window_data>().hwnd;
+
+            RECT rect;
+            GetClientRect(hwnd, &rect);
+
+            return uva::size(rect.right - rect.left, rect.bottom - rect.top);
         }
 
         void toplevel::set_cursor(cursor_type __cursor)
