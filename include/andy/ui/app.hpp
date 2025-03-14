@@ -5,9 +5,9 @@
 #include <functional>
 
 #include <uva/os_specific_data_member.hpp>
-#include <uva/ui/implmement_app.hpp>
+#include <andy/ui/implmement_app.hpp>
 
-namespace uva
+namespace andy
 {
     namespace ui
     {

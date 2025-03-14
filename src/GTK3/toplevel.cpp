@@ -2,8 +2,8 @@
 
 #include <iostream>
 
-#include <uva/ui/toplevel.hpp>
-#include <uva/ui/app.hpp>
+#include <andy/ui/toplevel.hpp>
+#include <andy/ui/app.hpp>
 
 #include <uva/drawing/gtk3+-3.0.hpp>
 
@@ -14,24 +14,24 @@ struct window_data {
 #define m_widget os_specific_data_as<window_data>().window
 
 void draw_callback(GtkWidget* widget, cairo_t* cr, gpointer data) {
-    uva::ui::toplevel* top = reinterpret_cast<uva::ui::toplevel*>(data);
+    andy::ui::toplevel* top = reinterpret_cast<andy::ui::toplevel*>(data);
     uva::drawing::software_renderer renderer;
     renderer.os_specific_data_as<software_renderer_data>().cairo = cr;
     top->draw(renderer);
 }
 
 void motion_notify_event(GtkWidget* widget, GdkEventMotion* event, gpointer data) {
-    uva::ui::toplevel* top = reinterpret_cast<uva::ui::toplevel*>(data);
+    andy::ui::toplevel* top = reinterpret_cast<andy::ui::toplevel*>(data);
     top->motion(uva::point(event->x, event->y));
 }
 
 void button_press_event(GtkWidget* widget, GdkEventButton* event, gpointer data) {
-    uva::ui::toplevel* top = reinterpret_cast<uva::ui::toplevel*>(data);
+    andy::ui::toplevel* top = reinterpret_cast<andy::ui::toplevel*>(data);
     top->click(uva::point(event->x, event->y));
 }
 
 gboolean key_press_event(GtkWidget* widget, GdkEventKey* event, gpointer data) {
-    uva::ui::toplevel* top = reinterpret_cast<uva::ui::toplevel*>(data);
+    andy::ui::toplevel* top = reinterpret_cast<andy::ui::toplevel*>(data);
     if(top->on_char(std::string(event->string))) {
         GtkWidget* dialog = top->os_specific_data_as<window_data>().window;
         gtk_widget_queue_draw(dialog);
@@ -40,7 +40,7 @@ gboolean key_press_event(GtkWidget* widget, GdkEventKey* event, gpointer data) {
     return TRUE;
 }
 
-namespace uva
+namespace andy
 {
     namespace ui
     {
@@ -63,7 +63,7 @@ namespace uva
             return uva::size(width, height);
         }
 
-        uva::ui::cursor_type toplevel::cursor() const
+        andy::ui::cursor_type toplevel::cursor() const
         {
             GtkWidget* window = os_specific_data_as<window_data>().window;
             GdkWindow *gdk_window = gtk_widget_get_window(GTK_WIDGET(window));
@@ -71,16 +71,16 @@ namespace uva
             GdkCursor* cursor = gdk_window_get_cursor(gdk_window);
 
             if(!cursor) {
-                return uva::ui::cursor_type::default_cursor;
+                return andy::ui::cursor_type::default_cursor;
             }
 
             GdkCursorType cursor_type = gdk_cursor_get_cursor_type(cursor);
 
             switch(cursor_type) {
                 case GDK_HAND2:
-                    return uva::ui::cursor_type::pointer;
+                    return andy::ui::cursor_type::pointer;
                 default:
-                    return uva::ui::cursor_type::default_cursor;
+                    return andy::ui::cursor_type::default_cursor;
             }
         }
 
@@ -92,10 +92,10 @@ namespace uva
             GdkCursor* cursor = nullptr;
 
             switch(__cursor) {
-                case uva::ui::cursor_type::default_cursor:
+                case andy::ui::cursor_type::default_cursor:
                     cursor = nullptr;
                     break;
-                case uva::ui::cursor_type::pointer:
+                case andy::ui::cursor_type::pointer:
                     cursor = gdk_cursor_new_from_name(gdk_window_get_display(gdk_window), "pointer");
                     break;
                 default:

@@ -3,19 +3,19 @@
 #include <stdexcept>
 #include <map>
 
-#include <uva/ui/frame.hpp>
-#include <uva/ui/app.hpp>
+#include <andy/ui/frame.hpp>
+#include <andy/ui/app.hpp>
 
 #include <uva/drawing/win32.hpp>
 #include <uva/drawing.hpp>
 
-extern uva::ui::app* uvaapp;
+extern andy::ui::app* uvaapp;
 
 extern HINSTANCE hInstance;
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-    uva::ui::frame* frame = (uva::ui::frame*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+    andy::ui::frame* frame = (andy::ui::frame*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
 
     switch (uMsg)
     {
@@ -25,7 +25,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     case WM_CREATE:
         {
             CREATESTRUCT* create = (CREATESTRUCT*)lParam;
-            frame = (uva::ui::frame*)create->lpCreateParams;
+            frame = (andy::ui::frame*)create->lpCreateParams;
             SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)frame);
         }
         break;
@@ -53,7 +53,7 @@ namespace uva
     {
         frame::frame(std::string_view __title)
         {
-            const TCHAR* class_name = TEXT("uva::ui::frame");
+            const TCHAR* class_name = TEXT("andy::ui::frame");
 
             WNDCLASS wc = { 0 };
             wc.lpfnWndProc = WindowProc;

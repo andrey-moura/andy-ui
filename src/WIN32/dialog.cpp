@@ -1,4 +1,4 @@
-#include <uva/ui/dialog.hpp>
+#include <andy/ui/dialog.hpp>
 
 #include <Windows.h>
 
@@ -15,7 +15,7 @@ namespace uva
     {
         dialog::dialog(std::string_view __title)
         {
-            m_dialog = CreateWindowEx(0, TEXT("uva::ui::dialog"), __title.data(), WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, nullptr, nullptr, nullptr, nullptr);
+            m_dialog = CreateWindowEx(0, TEXT("andy::ui::dialog"), __title.data(), WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, nullptr, nullptr, nullptr, nullptr);
         }
 
         dialog::~dialog()

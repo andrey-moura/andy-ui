@@ -1,31 +1,31 @@
 // Include gtk
 #include <gtk/gtk.h>
 
-#include <uva/ui/app.hpp>
+#include <andy/ui/app.hpp>
 
 GtkApplication *gtkapp = nullptr;
-uva::lang::ui::app* uvaapp = nullptr;
+andy::ui::app* uvaapp = nullptr;
 
 int argc = 0;
 char** argv = nullptr;
 
 void on_activate (GtkApplication* app, gpointer user_data) {
-    uvaapp = reinterpret_cast<uva::lang::ui::app*>(user_data);
+    uvaapp = reinterpret_cast<andy::ui::app*>(user_data);
     uvaapp->on_init(argc, argv);
 }
 
-uva::lang::ui::app::app(std::string_view __name, std::string_view vendor)
+andy::ui::app::app(std::string_view __name, std::string_view vendor)
 {
     gtkapp = gtk_application_new ("org.gtk.example", G_APPLICATION_FLAGS_NONE);
     g_set_application_name("My App");
     g_signal_connect (gtkapp, "activate", G_CALLBACK (on_activate), this);
 }
 
-uva::lang::ui::app::~app()
+andy::ui::app::~app()
 {
 }
 
-int uva::lang::ui::app::run(int __argc, char** __argv)
+int andy::ui::app::run(int __argc, char** __argv)
 {
     argc = __argc;
     argv = __argv;

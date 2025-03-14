@@ -1,5 +1,5 @@
-#include <uva/ui/app.hpp>
-#include <uva/ui/frame.hpp>
+#include <andy/ui/app.hpp>
+#include <andy/ui/frame.hpp>
 
 class myapp : public uva::lang::ui::app
 {

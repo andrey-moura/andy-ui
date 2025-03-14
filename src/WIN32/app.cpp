@@ -1,23 +1,23 @@
 #include <windows.h>
-#include <uva/ui/app.hpp>
+#include <andy/ui/app.hpp>
 
-uva::ui::app* uvaapp = nullptr;
+andy::ui::app* uvaapp = nullptr;
 
 HINSTANCE hInstance = nullptr;
 HINSTANCE hPrevInstance = nullptr;
 LPSTR lpCmdLine = nullptr;
 int nCmdShow = 0;
 
-uva::ui::app::app(std::string_view __name, std::string_view vendor)
+andy::ui::app::app(std::string_view __name, std::string_view vendor)
 {
 }
 
-uva::ui::app::~app()
+andy::ui::app::~app()
 {
     
 }
 
-int uva::ui::app::run(int _argc, char** _argv)
+int andy::ui::app::run(int _argc, char** _argv)
 {
     on_init(_argc, _argv);
 

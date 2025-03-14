@@ -10,9 +10,9 @@
 #include <uva/os_specific_data_member.hpp>
 #include <uva/drawing.hpp>
 
-#include <uva/ui/toplevel.hpp>
+#include <andy/ui/toplevel.hpp>
 
-namespace uva
+namespace andy
 {
     namespace ui
     {

@@ -5,7 +5,7 @@
 #include <uva/os_specific_data_member.hpp>
 #include <uva/drawing.hpp>
 
-namespace uva
+namespace andy
 {
     namespace ui
     {

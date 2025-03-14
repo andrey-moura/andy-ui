@@ -1,22 +1,21 @@
-#include <uva/ui/frame.hpp>
+#include <andy/ui/frame.hpp>
 
 //#include <uva/xml.hpp>
 
 #include <iostream>
 
-#include <uva/ui/app.hpp>
+#include <andy/ui/app.hpp>
 #include <uva/drawing/gtk3+-3.0.hpp>
 
 #include <gtk/gtk.h>
 
 extern GtkApplication *gtkapp;
-extern uva::lang::ui::app* uvaapp;
 
 struct window_data {
     GtkWidget* window;
 };
 
-namespace uva
+namespace andy
 {
     namespace ui
     {

@@ -1,10 +1,10 @@
-#include <uva/ui/dialog.hpp>
+#include <andy/ui/dialog.hpp>
 
 //#include <uva/xml.hpp>
 
 #include <iostream>
 
-#include <uva/ui/app.hpp>
+#include <andy/ui/app.hpp>
 #include <uva/drawing/gtk3+-3.0.hpp>
 
 #include <gtk/gtk.h>
@@ -15,7 +15,7 @@ struct window_data {
 
 #define m_dialog os_specific_data_as<window_data>().window
 
-namespace uva
+namespace andy
 {
     namespace ui
     {
