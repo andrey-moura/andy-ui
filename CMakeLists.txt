@@ -27,7 +27,7 @@ else()
     message(FATAL_ERROR "Unsupported platform")
 endif()
 
-macro(os_specific_target_properties target)
+macro(andy_ui_properties target)
     if(WIN32)
         set_target_properties(${target} PROPERTIES WIN32_EXECUTABLE true)
     elseif(LINUX)
@@ -38,9 +38,9 @@ macro(os_specific_target_properties target)
 endmacro()
 
 if (NOT UVA_UI_BACKEND STREQUAL "NONE")
-    # Add uvaui as shared library
+    # Add andy-ui as shared library
 
-    add_library(uvaui
+    add_library(andy-ui OBJECT
         ${CMAKE_CURRENT_LIST_DIR}/src/${UVA_UI_BACKEND}/app.cpp
         ${CMAKE_CURRENT_LIST_DIR}/src/${UVA_UI_BACKEND}/dialog.cpp
         ${CMAKE_CURRENT_LIST_DIR}/src/${UVA_UI_BACKEND}/frame.cpp
@@ -49,7 +49,7 @@ if (NOT UVA_UI_BACKEND STREQUAL "NONE")
 
     include_directories(${CMAKE_CURRENT_LIST_DIR}/include)
 
-    os_specific_target_properties(uvaui)
+    andy_ui_properties(andy-ui)
 
     add_definitions(-D"__UVA_UI_BACKEND_${UVA_UI_BACKEND}__")
 endif()
@@ -64,7 +64,7 @@ foreach(EXAMPLE ${EXAMPLES})
 
     add_executable(${EXAMPLE_NAME} ${EXAMPLE})
 
-    target_link_libraries(${EXAMPLE_NAME} uvaui)
+    target_link_libraries(${EXAMPLE_NAME} andy-ui)
 
-    os_specific_target_properties(${EXAMPLE_NAME})
+    andy_ui_properties(${EXAMPLE_NAME})
 endforeach()

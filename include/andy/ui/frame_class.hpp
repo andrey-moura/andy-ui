@@ -9,7 +9,7 @@ namespace uva
 
         namespace frame_class
         {
-            std::shared_ptr<uva::lang::structure> create(uva::lang::interpreter* interpreter);
+            std::shared_ptr<andy::lang::structure> create(andy::lang::interpreter* interpreter);
         };
     };
 };

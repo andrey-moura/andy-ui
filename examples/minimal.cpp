@@ -1,15 +1,15 @@
 #include <andy/ui/app.hpp>
 #include <andy/ui/frame.hpp>
 
-class myapp : public uva::lang::ui::app
+class myapp : public andy::lang::ui::app
 {
 public:
-    myapp() : uva::lang::ui::app("MyApp", "MyVendor") {}
+    myapp() : andy::lang::ui::app("MyApp", "MyVendor") {}
     ~myapp() {}
 
     void on_init(int argc, char** argv) override
     {
-        uva::lang::ui::frame frame("MyFrame");
+        andy::lang::ui::frame frame("MyFrame");
         frame.show();
     }
 };

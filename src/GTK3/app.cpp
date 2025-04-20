@@ -4,14 +4,14 @@
 #include <andy/ui/app.hpp>
 
 GtkApplication *gtkapp = nullptr;
-andy::ui::app* uvaapp = nullptr;
+andy::ui::app* andy_app = nullptr;
 
 int argc = 0;
 char** argv = nullptr;
 
 void on_activate (GtkApplication* app, gpointer user_data) {
-    uvaapp = reinterpret_cast<andy::ui::app*>(user_data);
-    uvaapp->on_init(argc, argv);
+    andy_app = reinterpret_cast<andy::ui::app*>(user_data);
+    andy_app->on_init(argc, argv);
 }
 
 andy::ui::app::app(std::string_view __name, std::string_view vendor)
