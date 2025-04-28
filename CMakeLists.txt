@@ -27,11 +27,16 @@ else()
     message(FATAL_ERROR "Unsupported platform")
 endif()
 
+if(LINUX)
+    set(ANDY_UI_LIBRARIES ${GTK3_LIBRARIES})
+ENDIF()
+
 macro(andy_ui_properties target)
     if(WIN32)
         set_target_properties(${target} PROPERTIES WIN32_EXECUTABLE true)
     elseif(LINUX)
-        target_link_libraries(${target} ${GTK3_LIBRARIES})
+        target_link_directories(${target} PRIVATE ${GTK3_LIBRARY_DIRS})
+        target_link_libraries(${target} PRIVATE ${GTK3_LIBRARIES})
     else()
         message(FATAL_ERROR "Unsupported platform")
     endif()
@@ -49,7 +54,7 @@ if (NOT UVA_UI_BACKEND STREQUAL "NONE")
 
     include_directories(${CMAKE_CURRENT_LIST_DIR}/include)
 
-    andy_ui_properties(andy-ui)
+    # andy_ui_properties(andy-ui)
 
     add_definitions(-D"__UVA_UI_BACKEND_${UVA_UI_BACKEND}__")
 endif()
@@ -66,5 +71,5 @@ foreach(EXAMPLE ${EXAMPLES})
 
     target_link_libraries(${EXAMPLE_NAME} andy-ui)
 
-    andy_ui_properties(${EXAMPLE_NAME})
+    # andy_ui_properties(${EXAMPLE_NAME})
 endforeach()

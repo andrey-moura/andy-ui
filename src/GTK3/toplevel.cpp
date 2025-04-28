@@ -111,22 +111,22 @@ namespace andy
             GtkWidget* container = (GtkWidget*)__container;
 
             gtk_window_set_title(GTK_WINDOW(window), __title.data());
-            gtk_window_set_modal(GTK_WINDOW(window), TRUE);
+//            gtk_window_set_modal(GTK_WINDOW(window), TRUE);
             gtk_window_set_default_size (GTK_WINDOW (window), 400, 400);
 
-            GtkWidget* drawing_area = gtk_drawing_area_new();
-            gtk_widget_set_can_focus(drawing_area, TRUE);
+            // GtkWidget* drawing_area = gtk_drawing_area_new();
+            // gtk_widget_set_can_focus(drawing_area, TRUE);
 
-            gtk_container_add(GTK_CONTAINER(container), drawing_area);
-            gtk_widget_set_size_request(drawing_area, 400, 400);
+            // gtk_container_add(GTK_CONTAINER(container), drawing_area);
+            // gtk_widget_set_size_request(drawing_area, 400, 400);
 
-            g_signal_connect (drawing_area, "draw", G_CALLBACK (draw_callback), this);
-            g_signal_connect (drawing_area, "motion_notify_event", G_CALLBACK (motion_notify_event), this);
-            g_signal_connect (drawing_area, "button-press-event", G_CALLBACK (button_press_event), this);
-            g_signal_connect (drawing_area, "key_press_event", G_CALLBACK (key_press_event), this);
+            // g_signal_connect (drawing_area, "draw", G_CALLBACK (draw_callback), this);
+            // g_signal_connect (drawing_area, "motion_notify_event", G_CALLBACK (motion_notify_event), this);
+            // g_signal_connect (drawing_area, "button-press-event", G_CALLBACK (button_press_event), this);
+            // g_signal_connect (drawing_area, "key_press_event", G_CALLBACK (key_press_event), this);
             
-            gtk_widget_add_events(drawing_area, GDK_BUTTON_PRESS_MASK);
-            gtk_widget_add_events(drawing_area, GDK_POINTER_MOTION_MASK);
+            // gtk_widget_add_events(drawing_area, GDK_BUTTON_PRESS_MASK);
+            // gtk_widget_add_events(drawing_area, GDK_POINTER_MOTION_MASK);
         }
     };
 };
