@@ -18,7 +18,9 @@ namespace andy
             frame(std::string_view __title);
             ~frame();
         public:
-            virtual void show(bool maximized = false) override;
+            virtual void show(bool maximized = false);
+        private:
+            void* m_data = nullptr;
         };
     };
 };
