@@ -7,59 +7,11 @@ project(uva-ui)
 
 include_directories(${CMAKE_CURRENT_LIST_DIR}/include)
 
-set(UVA_UI_BACKEND "NONE")
-
-if(WIN32)
-    set(UVA_UI_BACKEND "WIN32")
-elseif(LINUX)
-    find_package(PkgConfig)
-
-    if(PKG_CONFIG_FOUND)
-        pkg_check_modules(GTK3 gtk+-3.0)
-
-        if(GTK3_FOUND)
-            set(UVA_UI_BACKEND "GTK3")
-        endif()
-
-        include_directories(${GTK3_INCLUDE_DIRS})
-    endif()
-else()
-    message(FATAL_ERROR "Unsupported platform")
-endif()
-
-if(LINUX)
-    set(ANDY_UI_LIBRARIES ${GTK3_LIBRARIES})
-ENDIF()
-
-macro(andy_ui_properties target)
-    if(WIN32)
-        set_target_properties(${target} PROPERTIES WIN32_EXECUTABLE true)
-    elseif(LINUX)
-        target_link_directories(${target} PRIVATE ${GTK3_LIBRARY_DIRS})
-        target_link_libraries(${target} PRIVATE ${GTK3_LIBRARIES})
-    else()
-        message(FATAL_ERROR "Unsupported platform")
-    endif()
-endmacro()
-
-if (NOT UVA_UI_BACKEND STREQUAL "NONE")
-    # Add andy-ui as shared library
-
-    add_library(andy-ui OBJECT
-        ${CMAKE_CURRENT_LIST_DIR}/src/${UVA_UI_BACKEND}/app.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/src/${UVA_UI_BACKEND}/dialog.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/src/${UVA_UI_BACKEND}/frame.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/src/${UVA_UI_BACKEND}/toplevel.cpp
-    )
-
-    include_directories(${CMAKE_CURRENT_LIST_DIR}/include)
-
-    # andy_ui_properties(andy-ui)
-
-    add_definitions(-D"__UVA_UI_BACKEND_${UVA_UI_BACKEND}__")
-endif()
-
-message(STATUS "UVA_UI_BACKEND: ${UVA_UI_BACKEND}")
+add_library(andy-ui OBJECT
+    ${CMAKE_CURRENT_LIST_DIR}/src/app.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/src/dialog.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/src/frame.cpp
+)
 
 # Create an executable for each file in examples
 file(GLOB EXAMPLES ${CMAKE_CURRENT_LIST_DIR}/examples/*.cpp)

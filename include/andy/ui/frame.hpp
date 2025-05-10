@@ -7,17 +7,12 @@
 #include <string_view>
 
 #include <uva/size.hpp>
-#include <uva/os_specific_data_member.hpp>
-#include <uva/drawing.hpp>
-
-#include <andy/ui/toplevel.hpp>
 
 namespace andy
 {
     namespace ui
     {
-
-        class frame : public toplevel
+        class frame
         {
         public:
             frame(std::string_view __title);
