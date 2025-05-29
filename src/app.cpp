@@ -1,6 +1,11 @@
+#include <map>
+
 #include "andy/ui/app.hpp"
+#include "andy/ui/frame.hpp"
 
 #include <SDL3/SDL.h>
+
+extern std::map<SDL_WindowID, andy::ui::frame*> g_window_id_to_frame;
 
 namespace andy
 {
@@ -23,8 +28,17 @@ namespace andy
             while(true) {
                 SDL_Event event;
                 while(SDL_PollEvent(&event)) {
-                    if(event.type == SDL_EVENT_QUIT) {
-                        return 0;
+                    switch(event.type) {
+                        case SDL_EVENT_WINDOW_EXPOSED: {
+                            auto frame = g_window_id_to_frame[event.window.windowID];
+                            if(frame) {
+                                frame->on_draw();
+                            }
+                            break;
+                        }
+                        case SDL_EVENT_QUIT:
+                            SDL_Quit();
+                            return 0;
                     }
                 }
 
