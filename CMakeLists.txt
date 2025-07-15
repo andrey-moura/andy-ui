@@ -13,15 +13,17 @@ add_library(andy-ui OBJECT
     ${CMAKE_CURRENT_LIST_DIR}/src/frame.cpp
 )
 
-# Create an executable for each file in examples
-file(GLOB EXAMPLES ${CMAKE_CURRENT_LIST_DIR}/examples/*.cpp)
+if(BUILD_EXAMPLES)
+    # Create an executable for each file in examples
+    file(GLOB EXAMPLES ${CMAKE_CURRENT_LIST_DIR}/examples/*.cpp)
 
-foreach(EXAMPLE ${EXAMPLES})
-    get_filename_component(EXAMPLE_NAME ${EXAMPLE} NAME_WE)
+    foreach(EXAMPLE ${EXAMPLES})
+        get_filename_component(EXAMPLE_NAME ${EXAMPLE} NAME_WE)
 
-    add_executable(${EXAMPLE_NAME} ${EXAMPLE})
+        add_executable(${EXAMPLE_NAME} ${EXAMPLE})
 
-    target_link_libraries(${EXAMPLE_NAME} andy-ui)
+        target_link_libraries(${EXAMPLE_NAME} andy-ui)
 
-    # andy_ui_properties(${EXAMPLE_NAME})
-endforeach()
+        # andy_ui_properties(${EXAMPLE_NAME})
+    endforeach()
+endif()
