@@ -4,7 +4,7 @@
 #include <string_view>
 #include <functional>
 
-#include <uva/os_specific_data_member.hpp>
+#include <andy/os_specific_data_member.hpp>
 #include <andy/ui/implmement_app.hpp>
 
 namespace andy
@@ -18,8 +18,11 @@ namespace andy
             ~app();
         public:
             int run(int argc, char** argv);
-        public:
+        protected:
             virtual void on_init(int argc, char** argv) = 0;
+        private:
+            struct app_impl;
+            app_impl* m_impl = nullptr;
         };
     };
 };

@@ -6,9 +6,9 @@
 #include <string>
 #include <string_view>
 
-#include <uva/size.hpp>
-#include <uva/os_specific_data_member.hpp>
-#include <uva/drawing.hpp>
+#include <andy/size.hpp>
+#include <andy/os_specific_data_member.hpp>
+#include <andy/drawing.hpp>
 
 #include <andy/ui/toplevel.hpp>
 

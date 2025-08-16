@@ -3,15 +3,19 @@ cmake_minimum_required(VERSION 3.10)
 
 set(CMAKE_CXX_STANDARD 20)
 
-project(uva-ui)
+project(andy-ui)
 
-include_directories(${CMAKE_CURRENT_LIST_DIR}/include)
+if(FOUND_DRAWING_BACKEND)
+    include(modules/andy/include/andy/xml/CMakeLists.txt)
 
-add_library(andy-ui OBJECT
-    ${CMAKE_CURRENT_LIST_DIR}/src/app.cpp
-    ${CMAKE_CURRENT_LIST_DIR}/src/dialog.cpp
-    ${CMAKE_CURRENT_LIST_DIR}/src/frame.cpp
-)
+    include_directories(${CMAKE_CURRENT_LIST_DIR}/include)
+
+    add_library(andy-ui OBJECT
+        ${CMAKE_CURRENT_LIST_DIR}/src/app.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/app_${ANDY_DRAWING_BACKEND}.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/xml_page_${ANDY_DRAWING_BACKEND}.cpp
+    )
+endif()
 
 if(BUILD_EXAMPLES)
     # Create an executable for each file in examples
