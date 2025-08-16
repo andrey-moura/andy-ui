@@ -17,6 +17,12 @@ namespace andy
         void app::run()
         {
             on_init();
+            MSG msg;
+            while (GetMessage(&msg, nullptr, 0, 0))
+            {
+                TranslateMessage(&msg);
+                DispatchMessage(&msg);
+            }
         }
 
         void app::on_init()
