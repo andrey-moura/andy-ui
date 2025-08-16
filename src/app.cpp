@@ -1,29 +1,30 @@
-#include <map>
+#include <andy/ui/app.hpp>
 
-#include "andy/ui/app.hpp"
-
-#include "app_impl.hpp"
+#include <gtk/gtk.h>
 
 namespace andy
 {
     namespace ui
     {
-        app::app(std::string_view __name, std::string_view vendor)
-            : m_impl(new app_impl())
+        app::app()
         {
-        }
-        
-        app::~app()
-        {
-            delete m_impl;
-            m_impl = nullptr;
+            gtk_init(nullptr, nullptr);
         }
 
-        int app::run(int argc, char** argv)
+        app::~app()
         {
-            m_impl->init(argc, argv);
-            on_init(argc, argv);
-            m_impl->run(argc, argv);
+            gtk_main_quit();
+        }
+
+        void app::run()
+        {
+            on_init();
+            gtk_main();
+        }
+
+        void app::on_init()
+        {
+            // To be overridden by subclasses
         }
     }
-}
+};

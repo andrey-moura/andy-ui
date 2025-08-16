@@ -10,10 +10,11 @@ if(FOUND_DRAWING_BACKEND)
 
     include_directories(${CMAKE_CURRENT_LIST_DIR}/include)
 
-    add_library(andy-ui OBJECT
+    add_library(
+        andy-ui
+        OBJECT
         ${CMAKE_CURRENT_LIST_DIR}/src/app.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/src/app_${ANDY_DRAWING_BACKEND}.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/src/xml_page_${ANDY_DRAWING_BACKEND}.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/page.cpp
     )
 endif()
 
