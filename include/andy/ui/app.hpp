@@ -9,8 +9,9 @@ namespace andy
         public:
             app();
             ~app();
-        protected:
+        public:
             void run();
+        protected:
             virtual void on_init();
         };
     }

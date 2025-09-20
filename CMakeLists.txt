@@ -13,7 +13,7 @@ if(FOUND_DRAWING_BACKEND)
     add_library(
         andy-ui
         OBJECT
-        ${CMAKE_CURRENT_LIST_DIR}/src/app.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/${ANDY_DRAWING_BACKEND}/app.cpp
         ${CMAKE_CURRENT_LIST_DIR}/src/page.cpp
     )
 endif()
